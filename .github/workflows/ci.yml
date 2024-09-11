@@ -18,4 +18,6 @@ jobs:
 
       
       - name: Run Tests
-        run: pytest
+        run: | 
+          cd tests
+          pytest
