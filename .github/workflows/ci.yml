@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Cehckout error
+      - name: Checkout error
         uses: actions/checkout@v2
   
       - name: Set up Python
