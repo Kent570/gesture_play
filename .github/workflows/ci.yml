@@ -15,9 +15,8 @@ jobs:
           python-version: '3.11.7'
       - name: Install Dependencies
         run: pip install -r tests/requirements.txt
-
       
       - name: Run Tests
         run: | 
           cd tests
-          pytest
+          pytest -v
