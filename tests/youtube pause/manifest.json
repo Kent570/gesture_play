@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Video Control",
+    "version": "1.0",
+    "permissions": [
+      "activeTab"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://*/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
