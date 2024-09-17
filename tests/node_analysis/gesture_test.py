@@ -11,6 +11,7 @@ hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7
 mp_drawing = mp.solutions.drawing_utils
 
 # Open the video file
+video_path = '/content/drive/MyDrive/test_video.mp4'
 cap = cv2.VideoCapture(video_path)
 
 # Video writer to save the output
