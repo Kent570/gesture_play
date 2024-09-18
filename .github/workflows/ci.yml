@@ -6,16 +6,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout error
+      - name: Checkout code
         uses: actions/checkout@v2
   
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.11.7'
-      - name: Install Dependencies
+
+      - name: Install Python Dependencies
         run: pip install -r requirements.txt
       
-      # - name: Run Tests
-      #   run: | 
-      #     pytest -v
+      # - name: Run Python Tests
+      #   run: pytest -v
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Run JavaScript Tests
+        run: |
+          google-chrome --version
+          google-chrome --headless --disable-gpu --remote-debugging-port=9222 --disable-dev-shm-usage --no-sandbox tests.html
