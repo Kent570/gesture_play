@@ -7,4 +7,4 @@ async function sayHello() {
         }
     });
 }
-document.getElementById("mybutton").addEventListener("click", sayHello);
+document.getElementById('mybutton').addEventListener('click', sayHello);

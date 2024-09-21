@@ -1,11 +1,11 @@
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 function turnOnCamera() {
     // Add your camera turning-on logic here
-    console.log("Camera turned on.");
-    alert("Camera is now turned on!"); // Simulate the camera being turned on
+    console.log('Camera turned on.');
+    alert('Camera is now turned on!'); // Simulate the camera being turned on
   }
 //   const camerabtn = document.getElementById('camerabtn');
-  document.getElementById("camerabtn").addEventListener("click", turnOnCamera);
+  document.getElementById('camerabtn').addEventListener('click', turnOnCamera);
 
 if (SpeechRecognition) {
   const recognition = new SpeechRecognition();
@@ -40,8 +40,8 @@ if (SpeechRecognition) {
   startBtn.addEventListener('click', () => {
     recognition.start();
   });
-  if (transcript.includes("Camera ON")) {
-    resultElement.textContent += " - Turning the camera on!";
+  if (transcript.includes('Camera ON')) {
+    resultElement.textContent += ' - Turning the camera on!';
     turnOnCamera();  // Call function to turn the camera on
   }
   
