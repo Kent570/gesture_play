@@ -2,11 +2,8 @@ import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
   languageOptions: {
-    globals: {
-      structuredClone: 'readonly', // Define structuredClone as a read-only global
-    },
     parserOptions: {
-      ecmaVersion: 2021, // Specify the ECMAScript version
+      ecmaVersion: 2022, // Use ECMAScript 2022 (which includes structuredClone)
     },
   },
   rules: {
