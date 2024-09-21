@@ -16,14 +16,14 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./gesture_play
+        working-directory: ./gesture_play  # Adjust if necessary
 
       - name: Run ESLint
         run: npx eslint .
-        working-directory: ./gesture_play
+        working-directory: ./gesture_play  # Adjust if necessary
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v3
         with:
           name: eslint-report
-          path: ./gesture_play/eslint_report.txt # Adjust this path if you generate a report file
+          path: ./gesture_play/eslint_report.txt # Adjust if you generate a report file
