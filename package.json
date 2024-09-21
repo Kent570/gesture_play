@@ -1,0 +1,20 @@
+{
+  "name": "gesture_play",
+  "version": "1.0.0",
+  "description": "First test",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.11.0",
+    "eslint": "^9.11.0",
+    "globals": "^15.9.0"
+  }
+}
