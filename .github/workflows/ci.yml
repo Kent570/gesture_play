@@ -11,7 +11,10 @@ jobs:
 
       - name: List directory contents
         run: |
-          ls -R  # This will recursively list all files and directories
+          echo "Current directory:"
+          pwd
+          echo "Listing files:"
+          ls -R  # List all files and directories recursively
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -20,15 +23,12 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          cd ./gesture_play  # Navigate to your project directory
           npm install
 
       - name: Run ESLint
         run: |
-          cd ./gesture_play  # Navigate to your project directory
           npx eslint .
 
       - name: Run Tests
         run: |
-          cd ./gesture_play  # Navigate to your project directory
           npm test  # Assuming you have a test script defined in package.json
