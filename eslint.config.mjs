@@ -1,4 +1,4 @@
-import { defineConfig } from 'eslint-define-config'; 
+import { defineConfig } from 'eslint-define-config';
 
 export default defineConfig({
   languageOptions: {
@@ -10,7 +10,6 @@ export default defineConfig({
     },
   },
   rules: {
-    'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
+    "no-unused-vars": "off", // Disable the no-unused-vars rule
   },
 });
-//changes
