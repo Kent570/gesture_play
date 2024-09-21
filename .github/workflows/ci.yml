@@ -7,23 +7,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16' # or your preferred Node.js version
+          node-version: '16'  # Change this if you need a different version
 
       - name: Install Dependencies
-        run: npm install
-        working-directory: ./gesture_play  # Adjust if necessary
+        run: |
+          cd ./gesture_play  # Navigate to your project directory
+          npm install
 
       - name: Run ESLint
-        run: npx eslint .
-        working-directory: ./gesture_play  # Adjust if necessary
+        run: |
+          cd ./gesture_play  # Navigate to your project directory
+          npx eslint .
 
-      - name: Upload ESLint report
-        uses: actions/upload-artifact@v3
-        with:
-          name: eslint-report
-          path: ./gesture_play/eslint_report.txt # Adjust if you generate a report file
+      - name: Run Tests
+        run: |
+          cd ./gesture_play  # Navigate to your project directory
+          npm test  # Assuming you have a test script defined in package.json
