@@ -7,6 +7,6 @@ export default defineConfig({
     },
   },
   rules: {
-    'no-unused-vars': 'error',
+    'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }],
   },
 });
