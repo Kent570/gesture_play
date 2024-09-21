@@ -15,11 +15,11 @@ jobs:
           node-version: '16' # or your preferred Node.js version
 
       - name: Install Dependencies
-        working-directory: ./gesture_play # Update this to your actual path
         run: |
           npm install
+        working-directory: ./gesture_play # Ensure this points to where your package.json is located
 
       - name: Run ESLint
-        working-directory: ./gesture_play # Update this to your actual path
         run: |
           npx eslint .
+        working-directory: ./gesture_play # Ensure this points to where your code is located
