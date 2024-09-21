@@ -2,21 +2,24 @@ name: CI
 
 on: push
 
-jobs: 
+jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout error
+      - name: Checkout code
         uses: actions/checkout@v2
-  
-      - name: Set up Python
-        uses: actions/setup-python@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          python-version: '3.11.7'
+          node-version: '16' # or your preferred Node.js version
+
       - name: Install Dependencies
-        run: pip install -r tests/requirements.txt
-      
-      - name: Run Tests
-        run: | 
-          cd tests
-          pytest -v
+        run: |
+          npm install
+        working-directory: ./gesture_play # Ensure this points to where your package.json is located
+
+      - name: Run ESLint
+        run: |
+          npx eslint .
+        working-directory: ./gesture_play # Ensure this points to where your code is located
