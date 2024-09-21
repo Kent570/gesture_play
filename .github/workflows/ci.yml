@@ -20,3 +20,14 @@ jobs:
         run: | 
           cd tests
           pytest -v
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # Specify the version of Node.js you need
+
+      - name: Install ESLint
+        run: npm install eslint
+
+      - name: Run ESLint
+        run: npx eslint .
