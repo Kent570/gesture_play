@@ -21,3 +21,9 @@ jobs:
       - name: Run ESLint
         run: npx eslint .
         working-directory: ./gesture_play
+
+      - name: Upload ESLint report
+        uses: actions/upload-artifact@v3
+        with:
+          name: eslint-report
+          path: ./gesture_play/eslint_report.txt # Adjust this path if you generate a report file
