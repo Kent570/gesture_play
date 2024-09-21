@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x] # Use the same Node.js version as your local machine
+        node-version: [20.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -22,5 +22,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: npm install
-    - run: npx eslint .
+    - run: npm install  # Install dependencies including ESLint
+    - run: chmod +x ./node_modules/.bin/eslint  # Ensure ESLint has execute permissions
+    - run: npx eslint .  # Run ESLint
