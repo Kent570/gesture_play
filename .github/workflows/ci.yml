@@ -25,21 +25,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      # - name: Run JavaScript Tests
-      #   run: |
-      #     google-chrome --version
-      #     google-chrome --headless --disable-gpu --remote-debugging-port=9222 --disable-dev-shm-usage --no-sandbox tests.html
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
       - name: Install Node.js Dependencies
-        run: npm ci
+        run: |
+          npm install
+          npm install -g jest
 
       - name: Run JavaScript Unit Tests
-        run: npm test
+        run: jest
 
       - name: Run JavaScript Browser Tests
         run: |
