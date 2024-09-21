@@ -1,4 +1,4 @@
-import { detectHandOpen } from '../src/handPoseDetection';
+import { detectHandOpen } from '../src/simple_HTML/hand_open';
 
 describe('detectHandOpen', () => {
     test('detects open hand', () => {
