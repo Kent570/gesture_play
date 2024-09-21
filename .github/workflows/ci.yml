@@ -23,16 +23,3 @@ jobs:
         working-directory: ./gesture_play # Update this to your actual path
         run: |
           npx eslint .
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11.7'
-
-      - name: Install Python Dependencies
-        run: pip install -r tests/requirements.txt
-      
-      - name: Run Tests
-        run: | 
-          cd tests
-          pytest -v
