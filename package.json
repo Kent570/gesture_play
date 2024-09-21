@@ -1,13 +1,25 @@
 {
-    "name": "hand-pose-detection",
-    "version": "1.0.0",
-    "description": "Hand pose detection with MediaPipe",
-    "main": "index.js",
-    "scripts": {
-      "test": "jest"
-    },
-    "devDependencies": {
-      "@babel/preset-env": "^7.16.11",
-      "jest": "^27.5.1"
-    }
+  "name": "hand-pose-detection",
+  "version": "1.0.0",
+  "description": "Hand pose detection with MediaPipe and unit tests",
+  "main": "src/handPoseDetection.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "hand-pose",
+    "detection",
+    "mediapipe"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "@mediapipe/hands": "^0.4.1646424915"
   }
+}
