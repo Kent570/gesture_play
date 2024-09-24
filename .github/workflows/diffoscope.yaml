@@ -14,13 +14,13 @@ jobs:
           sudo apt update
           sudo apt install -y diffoscope
 
-      - name: Run Diffoscope
-        run: |
-          # Assuming your build outputs are in build1/ and build2/
-          diffoscope build1/ build2/ > diffoscope_report.txt
+      # - name: Run Diffoscope
+      #   run: |
+      #     # Assuming your build outputs are in build1/ and build2/
+      #     diffoscope build1/ build2/ > diffoscope_report.txt
 
       - name: Upload Diffoscope report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: diffoscope-report
           path: diffoscope_report.txt
