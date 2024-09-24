@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gesture Detector Tests</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/jasmine-html.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.6.0/boot.min.js"></script>
+</head>
+<body>
+  <script>
+    // Your gesture detection function
+    function detectGesture(handLandmarks) {
+      if (handLandmarks.thumb.tip.y < handLandmarks.thumb.base.y) {
+        return 'THUMB_UP';
+      }
+      return 'UNKNOWN';
+    }
+
+    // Jasmine tests
+    describe('Gesture Detection', function() {
+      it('detects thumb up gesture', function() {
+        const mockHandLandmarks = {
+          thumb: {
+            tip: { y: 0 },
+            base: { y: 10 }
+          }
+        };
+        expect(detectGesture(mockHandLandmarks)).toBe('THUMB_UP');
+      });
+
+      it('returns unknown for unrecognized gesture', function() {
+        const mockHandLandmarks = {
+          thumb: {
+            tip: { y: 10 },
+            base: { y: 0 }
+          }
+        };
+        expect(detectGesture(mockHandLandmarks)).toBe('UNKNOWN');
+      });
+    });
+  </script>
+</body>
+</html>

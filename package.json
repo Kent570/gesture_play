@@ -18,8 +18,13 @@
     "eslint": "^9.11.0",
     "eslint-define-config": "^2.1.0",
     "globals": "^15.9.0"
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6"
   },
   "dependencies": {
-    "structured-clone": "^0.2.2"
+    "structured-clone": "^0.2.2",
+    "@mediapipe/hands": "^0.4.1646424915"
   }
 }
