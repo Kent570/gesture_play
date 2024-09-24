@@ -52,9 +52,13 @@ if (SpeechRecognition) {
   recognition.onresult = (event) => {
     const transcript = event.results[0][0].transcript.trim().toLowerCase();
     resultElement.textContent = `You said: ${transcript}`;
-    if (transcript.includes("camera")) {
+    if (transcript.includes("on the camera")) {
         resultElement.textContent += " - Turning the camera on!";
         turnOnCamera();  // Call function to turn the camera on
+      }
+    if (transcript.includes("off the camera")) {
+        resultElement.textContent += " - Turning the camera OFF!";
+        turnOfCamera();  // Call function to turn the camera off
       }
       
   };
