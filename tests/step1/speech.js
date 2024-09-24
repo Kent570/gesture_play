@@ -1,11 +1,29 @@
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 function turnOnCamera() {
-    // Add your camera turning-on logic here
-    console.log('Camera turned on.');
-    alert('Camera is now turned on!'); // Simulate the camera being turned on
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        // Display the stream in the video element
+        const videoElement = document.getElementById("videoOn");
+        videoElement.srcObject = stream;
+    })
+    .catch(error => {
+        console.error("Error accessing the camera: ", error);
+    });
   }
+function turnOfCamera(){
+    const videoElement = document.getElementById("videoOn");
+    const stream = videoElement.srcObject;
+
+    // Stop all tracks (video tracks in this case)
+    if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop());
+        videoElement.srcObject = null;  // Clear the video element
+    }
+}
 //   const camerabtn = document.getElementById('camerabtn');
-  document.getElementById('camerabtn').addEventListener('click', turnOnCamera);
+  document.getElementById("camerabtn").addEventListener("click", turnOnCamera);
+  document.getElementById("turnoffbtn").addEventListener("click", turnOfCamera);
 
 if (SpeechRecognition) {
   const recognition = new SpeechRecognition();
@@ -32,19 +50,20 @@ if (SpeechRecognition) {
 
   // When speech is recognized successfully
   recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
+    const transcript = event.results[0][0].transcript.trim().toLowerCase();
     resultElement.textContent = `You said: ${transcript}`;
+    if (transcript.includes("camera")) {
+        resultElement.textContent += " - Turning the camera on!";
+        turnOnCamera();  // Call function to turn the camera on
+      }
+      
   };
 
   // Start recognition when button is clicked
   startBtn.addEventListener('click', () => {
     recognition.start();
   });
-  if (transcript.includes('Camera ON')) {
-    resultElement.textContent += ' - Turning the camera on!';
-    turnOnCamera();  // Call function to turn the camera on
-  }
-  
+ 
 
 } else {
   // If the browser doesn't support speech recognition
