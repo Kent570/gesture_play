@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "Webcam Popup Extension",
+    "version": "1.0",
+    "description": "A Chrome extension that displays webcam feed in a popup.",
+    "permissions": [
+      "activeTab",
+      "tabCapture",
+      "videoCapture"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  
