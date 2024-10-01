@@ -1,6 +1,7 @@
 // Import necessary MediaPipe libraries
 import * as mp from '@mediapipe/hands';
 import * as drawingUtils from '@mediapipe/drawing_utils';
+import { Camera } from '@mediapipe/camera_utils';
 
 const videoElement = document.createElement('video');
 const canvasElement = document.createElement('canvas');
@@ -74,4 +75,5 @@ const camera = new Camera(videoElement, {
   width: 1280,
   height: 720
 });
+
 camera.start();
