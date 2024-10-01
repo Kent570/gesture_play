@@ -29,28 +29,36 @@ if (SpeechRecognition) {
   const recognition = new SpeechRecognition();
 
   // Continuous recognition (false means it'll stop after each result)
-  recognition.continuous = false;
+  recognition.continuous = true;
 
   // Set the language (you can change this to other languages like 'es-ES' for Spanish)
   recognition.lang = 'en-US';
 
   // Button to start speech recognition
   const startBtn = document.getElementById('start-btn');
+  const stopBtn = document.getElementById('stop-btn');
   const resultElement = document.getElementById('result');
 
   // When speech recognition starts
   recognition.onstart = () => {
     startBtn.textContent = 'Listening...';
+    resultElement.textContent = "Listening for commands...";
   };
 
   // When speech recognition ends
   recognition.onend = () => {
-    startBtn.textContent = 'Start Recognition';
+    if (recognition.isListening) {  // Check if we want to keep listening
+      recognition.start();  // Restart the recognition if it's not stopped manually
+    } else {
+      statusElement.textContent = '';  // Clear the recording status when stopped
+  }
+  
   };
 
   // When speech is recognized successfully
   recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript.trim().toLowerCase();
+    const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
+
     resultElement.textContent = `You said: ${transcript}`;
     if (transcript.includes("on the camera")) {
         resultElement.textContent += " - Turning the camera on!";
@@ -60,14 +68,22 @@ if (SpeechRecognition) {
         resultElement.textContent += " - Turning the camera OFF!";
         turnOfCamera();  // Call function to turn the camera off
       }
-      
+      recognition.stop(); 
   };
 
   // Start recognition when button is clicked
   startBtn.addEventListener('click', () => {
-    recognition.start();
+    recognition.isListening = true; 
+        recognition.start();
   });
  
+  stopBtn.addEventListener('click', () => {
+    recognition.isListening = false;  // Stop listening flag
+    recognition.stop();  // Manually stop the recognition
+    startBtn.textContent = 'Start Recognition';
+    statusElement.textContent = '';
+    resultElement.textContent = "Stopped listening.";
+});
 
 } else {
   // If the browser doesn't support speech recognition
