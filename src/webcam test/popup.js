@@ -1,12 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const videoElement = document.getElementById('webcamVideo');
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(function(stream) {
-        videoElement.srcObject = stream;
-      })
-      .catch(function(error) {
-        console.error('Error accessing webcam:', error);
-        alert('Could not access the webcam. Please ensure you have granted permissions.');
-      });
-  });
-  
+// Get reference to the video element
+const videoElement = document.getElementById('webcamVideo');
+
+// Function to start the camera
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({video: true})
+        .then((stream) => {
+            videoElement.srcObject = stream;
+            videoElement.play();
+            console.log("Camera started successfully");
+        })
+        .catch((err) => {
+            console.error("Error accessing the webcam:", err);
+        });
+}
+
+// Start the camera when the page loads
+window.addEventListener('load', startCamera);
