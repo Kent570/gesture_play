@@ -6,8 +6,13 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "camera"
+    "camera",
+    "offscreen"
   ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
   "action": {
     "default_popup": "popup.html"
   },
@@ -21,7 +26,6 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "injected_script.js",
         "mediapipe/*"
       ],
       "matches": ["<all_urls>"]

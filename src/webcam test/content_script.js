@@ -1,13 +1,24 @@
 // content_script.js
 
-// Inject `injected_script.js` into the webpage
-(function() {
-    const script = document.createElement('script');
-    script.src = chrome.runtime.getURL('injected_script.js');
-    script.type = 'module'; // Use module type if you're using ES6 modules
-    script.onload = function() {
-      this.remove();
-    };
-    (document.head || document.documentElement).appendChild(script);
-  })();
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === 'gestureDetected') {
+      // Control the video based on the gesture
+      const gesture = message.gesture;
+      handleGesture(gesture);
+    }
+  });
+  
+  function handleGesture(gesture) {
+    // Implement video control logic here
+    if (gesture === 'Hand detected') {
+      // For example, pause the video
+      const video = document.querySelector('video');
+      if (video) {
+        video.pause();
+      }
+    }
+  }
+  
+  // Start gesture detection when the content script loads
+  chrome.runtime.sendMessage({ type: 'startGestureDetection' });
   
