@@ -1,38 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webcam Viewer</title>
+  <title>Hand Gesture Video Controller</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 10px;
+      text-align: center;
     }
-    video {
-      width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
-    }
-    canvas {
-      width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
+    h1 {
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <h2>Webcam Feed</h2>
-  <video id="webcamVideo" autoplay playsinline></video>
-  <canvas id="output-canvas"></canvas>
-  <div id="hand-status">Waiting for hand detection...</div>
-
-  <!-- Script from local -->
-  <script src="popup.js"></script>
-
-  <!-- MediaPipe libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-  
+  <h1>Hand Gesture Video Controller</h1>
+  <p>The extension is active. Use hand gestures to control video playback.</p>
 </body>
 </html>

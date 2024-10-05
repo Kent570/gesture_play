@@ -20,6 +20,17 @@ function startCamera() {
     });
 }
 
+function startDetection() {
+    const camera = new Camera(videoElement, {
+        onFrame: async () => {
+            await hands.send({image: videoElement});
+        },
+        width: 1280,
+        height: 720
+    });
+    camera.start();
+}
+
 // Start the camera when the page loads
 window.addEventListener('load', startCamera);
 

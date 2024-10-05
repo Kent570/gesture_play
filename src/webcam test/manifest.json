@@ -1,16 +1,30 @@
 {
-    "manifest_version": 3,
-    "name": "Webcam Popup Extension",
-    "version": "1.0",
-    "description": "A Chrome extension that displays webcam feed in a popup.",
-    "permissions": [
-      "camera",
-      "activeTab",
-      "tabCapture",
-      "videoCapture"
-    ],
-    "action": {
-      "default_popup": "popup.html"
+  "manifest_version": 3,
+  "name": "Hand Gesture Video Controller",
+  "version": "1.0",
+  "description": "Control video playback using hand gestures.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "camera"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_start"
     }
-  }
-  
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "injected_script.js",
+        "mediapipe/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
