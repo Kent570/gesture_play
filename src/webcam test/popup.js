@@ -1,25 +1,99 @@
-// Get reference to the video element
-const videoElement = document.getElementById('webcamVideo');
+// popup.js
 
-// Function to start the camera
+// Get references to the DOM elements
+const videoElement = document.getElementById('webcamVideo');
+const canvasElement = document.getElementById('output-canvas');
+const canvasCtx = canvasElement.getContext('2d');
+const handStatusElement = document.getElementById('hand-status');
+const gestureDescriptionElement = document.getElementById('gesture-description');
+
+// Start the camera in the popup
 function startCamera() {
-    navigator.mediaDevices.getUserMedia({video: true})
+  navigator.mediaDevices.getUserMedia({ video: true })
     .then((stream) => {
-        videoElement.srcObject = stream;
-        videoElement.play();
-        // Start detection after video is playing
-        videoElement.onloadedmetadata = () => {
-            canvasElement.width = videoElement.videoWidth;
-            canvasElement.height = videoElement.videoHeight;
-            // startDetection();
-        };
+      videoElement.srcObject = stream;
+      videoElement.play();
+      // Begin rendering the frames
+      requestAnimationFrame(renderFrame);
     })
     .catch((err) => {
-        console.error("Error accessing the webcam:", err);
-        handStatusElement.textContent = "Error: Could not access webcam";
+      console.error('Error accessing the webcam:', err);
+      handStatusElement.textContent = 'Error: Could not access webcam';
     });
+}
+
+// Render the video frame and overlay landmarks
+function renderFrame() {
+  canvasCtx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height);
+  // The landmarks will be drawn on top in drawResults function
+  requestAnimationFrame(renderFrame);
 }
 
 // Start the camera when the page loads
 window.addEventListener('load', startCamera);
 
+// Establish a connection to the background script
+const port = chrome.runtime.connect({ name: 'popup' });
+
+port.onMessage.addListener((message) => {
+  if (message.type === 'handData') {
+    const results = message.data;
+    drawResults(results);
+  }
+});
+
+// Start the offscreen document
+chrome.runtime.sendMessage({ command: 'startOffscreen' }, (response) => {
+  if (chrome.runtime.lastError) {
+    console.error('Error sending message:', chrome.runtime.lastError.message);
+  } else if (response && response.success) {
+    console.log('Offscreen document started successfully.');
+  } else {
+    console.error('Failed to start offscreen document:', response.error);
+  }
+});
+
+// Draw the results on the canvas
+function drawResults(results) {
+  canvasCtx.save();
+  // Draw the hand landmarks
+  if (results.multiHandLandmarks && results.multiHandedness) {
+    for (let index = 0; index < results.multiHandLandmarks.length; index++) {
+      const landmarks = results.multiHandLandmarks[index];
+
+      // Draw the hand landmarks
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, { color: '#00FF00', lineWidth: 5 });
+      drawLandmarks(canvasCtx, landmarks, { color: '#FF0000', lineWidth: 2 });
+
+      // Detect if the hand is open or closed
+      const isHandOpen = detectHandOpen(landmarks);
+      const handGesture = isHandOpen ? 'Open Hand' : 'Closed Fist';
+
+      // Update the hand status element
+      handStatusElement.textContent = `Detected: ${handGesture}`;
+      gestureDescriptionElement.textContent = `Gesture: ${handGesture}`;
+    }
+  } else {
+    handStatusElement.textContent = 'No hand detected';
+    gestureDescriptionElement.textContent = 'Gesture: None';
+  }
+  canvasCtx.restore();
+}
+
+// Function to detect if hand is open or closed (same as before)
+function detectHandOpen(landmarks) {
+  // ... (your existing detection logic)
+}
+
+// Clean up when the popup is closed
+window.addEventListener('unload', () => {
+  chrome.runtime.sendMessage({ command: 'stopOffscreen' }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.error('Error sending message:', chrome.runtime.lastError.message);
+    } else if (response && response.success) {
+      console.log('Offscreen document stopped successfully.');
+    } else {
+      console.error('Failed to stop offscreen document:', response.error);
+    }
+  });
+});

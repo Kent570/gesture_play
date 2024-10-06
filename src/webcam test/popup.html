@@ -1,38 +1,40 @@
+<!-- popup.html -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Webcam Viewer</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 10px;
+    /* Your CSS styles */
+    #output-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
-    video {
-      width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
+    #video-container {
+      position: relative;
+      width: 640px;
+      height: 480px;
     }
-    canvas {
-      width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
+    #webcamVideo {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   </style>
 </head>
 <body>
   <h2>Webcam Feed</h2>
-  <video id="webcamVideo" autoplay playsinline></video>
-  <canvas id="output-canvas"></canvas>
+  <div id="video-container">
+    <video id="webcamVideo" autoplay playsinline width="640" height="480"></video>
+    <canvas id="output-canvas" width="640" height="480"></canvas>
+  </div>
   <div id="hand-status">Waiting for hand detection...</div>
+  <div id="gesture-description">Gesture: None</div>
 
-  <!-- Script from local -->
+  <!-- MediaPipe drawing utilities -->
+  <script src="mediapipe/drawing_utils.js"></script>
+
+  <!-- Your script -->
   <script src="popup.js"></script>
-
-  <!-- MediaPipe libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-  
 </body>
 </html>
