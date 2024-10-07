@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Webcam Hand Detection Extension",
+  "version": "1.0",
+  "description": "A Chrome extension that detects hand gestures using a local server.",
+  "permissions": [],
+  "host_permissions": ["http://localhost/*"],
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*; script-src 'self'; object-src 'self';"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

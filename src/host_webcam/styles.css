@@ -1,0 +1,35 @@
+/* styles.css */
+
+.hidden{
+    display: none;
+}
+
+/* CSS Styles */
+.video-container {
+    position: relative;
+    width: 640px;
+    height: 480px;
+  }
+  
+  #webcamVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  #output-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  #hand-status,
+  #gesture-description {
+    margin-top: 10px;
+  }
+  

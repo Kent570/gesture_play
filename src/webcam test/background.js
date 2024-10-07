@@ -68,9 +68,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     })();
 
     return true; // Keep the message channel open for sendResponse
-  } else if (message.type === 'handData') {
+    } else if (message.type === 'handData') {
+    console.log('Background script received handData message:', message);
     // Forward hand data to the popup if connected
     if (popupPort) {
+      console.log('Forwarding handData to popup.');
       popupPort.postMessage(message);
     } else {
       console.warn('Popup is not connected.');

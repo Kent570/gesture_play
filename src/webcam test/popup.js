@@ -36,11 +36,18 @@ window.addEventListener('load', startCamera);
 const port = chrome.runtime.connect({ name: 'popup' });
 
 port.onMessage.addListener((message) => {
-  if (message.type === 'handData') {
-    const results = message.data;
-    drawResults(results);
-  }
-});
+    console.log('Received message from background script:', message);
+    if (message.type === 'handData') {
+      const results = message.data;
+      drawResults(results);
+    }
+  });
+
+function drawResults(results) {
+console.log('drawResults called with results:', results);
+latestResults = results;
+}
+  
 
 // Start the offscreen document
 chrome.runtime.sendMessage({ command: 'startOffscreen' }, (response) => {
@@ -55,6 +62,7 @@ chrome.runtime.sendMessage({ command: 'startOffscreen' }, (response) => {
 
 // Draw the results on the canvas
 function drawResults(results) {
+  console.log('drawResults called with results:', results);   
   canvasCtx.save();
   // Draw the hand landmarks
   if (results.multiHandLandmarks && results.multiHandedness) {
@@ -82,7 +90,22 @@ function drawResults(results) {
 
 // Function to detect if hand is open or closed (same as before)
 function detectHandOpen(landmarks) {
-  // ... (your existing detection logic)
+    const fingertips = [4, 8, 12, 16, 20]; // Thumb, Index, Middle, Ring, Pinky
+    const wristY = landmarks[0].y;
+    
+    let openFingers = 0;
+    for (let i = 1; i < fingertips.length; i++) {
+        if (landmarks[fingertips[i]].y < wristY) {
+            openFingers++;
+        }
+    }
+    
+    // Check thumb separately (based on x-coordinate)
+    if (landmarks[fingertips[0]].x > landmarks[fingertips[0] - 1].x) {
+        openFingers++;
+    }
+    
+    return openFingers >= 4; // Consider hand open if at least 4 fingers are open
 }
 
 // Clean up when the popup is closed

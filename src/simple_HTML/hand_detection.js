@@ -6,7 +6,7 @@ const handStatusElement = document.getElementById('hand-status');
 
 // Initialize MediaPipe Hands solution
 const hands = new Hands({locateFile: (file) => {
-    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+    return `mediapipe/hands/${file}`;
 }});
 
 hands.setOptions({
