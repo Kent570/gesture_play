@@ -1,24 +1,3 @@
-// function skipToNextVideo() {
-//     const videos = document.querySelectorAll('video');
-//     if (videos.length > 0) {
-//       const currentVideo = videos[0];
-//       currentVideo.pause();
-  
-//       if (videos[1]) {
-//         const nextVideo = videos[1];
-//         nextVideo.play();
-//         window.scrollTo({
-//           top: nextVideo.getBoundingClientRect().top + window.pageYOffset,
-//           behavior: 'smooth'
-//         });
-//       } else {
-//         alert('No more videos on the page.');
-//       }
-//     } else {
-//       alert('No videos found.');
-//     }
-//   }
-
 document.addEventListener('keydown', function(event) {
     let video = document.querySelector('video');
     
@@ -70,28 +49,6 @@ document.addEventListener('keydown', function(event) {
                 muteButton.click(); // mute
             }
         }
-        // if(event.key === 'u'){
-        //     const eventu = new KeyboardEvent('keydown', {
-        //         key: 'ArrowUp',
-        //         code: 'ArrowUp',
-        //         keyCode: 38, 
-        //         which: 38,
-        //         bubbles: true,
-        //         cancelable: true
-        //       });
-        //       document.dispatchEvent(eventu);
-        // }
-        // if(event.key === 'd'){
-        //     const eventd = new KeyboardEvent('keydown', {
-        //         key: 'ArrowDown',
-        //         code: 'ArrowDown',
-        //         keyCode: 40, 
-        //         which: 40,
-        //         bubbles: true,
-        //         cancelable: true
-        //       });
-        //       document.dispatchEvent(eventd);
-        // }
     }
 });
 

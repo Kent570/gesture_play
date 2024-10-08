@@ -1,15 +1,23 @@
 {
     "manifest_version": 3,
-    "name": "YouTube Video Control",
-    "version": "1.0.0",
+    "name": "YouTube Video Control1",
+    "version": "1.0.1",
     "permissions": [
-      "activeTab"
+      "activeTab",
+      "tabCapture",
+      "videoCapture"
     ],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
         "js": ["content.js"]
       }
-    ]
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "index.html"
+    }
   }
   
