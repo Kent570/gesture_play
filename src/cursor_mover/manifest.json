@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Virtual Cursor Mover",
+    "version": "1.0",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "commands": {
+        "move_up": {
+          "suggested_key": "Ctrl+U",
+          "description": "Move Cursor Up"
+        },
+        "move_down": {
+          "suggested_key": "Ctrl+I",
+          "description": "Move Cursor Down"
+        },
+        "move_left": {
+          "suggested_key": "Ctrl+J",
+          "description": "Move Cursor Left"
+        },
+        "move_right": {
+          "suggested_key": "Ctrl+K",
+          "description": "Move Cursor Right"
+        }
+      }
+      
+  }
+  
