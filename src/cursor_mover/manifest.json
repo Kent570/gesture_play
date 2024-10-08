@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Virtual Cursor Mover",
+    "name": "Virtual Cursor Move1",
     "version": "1.0",
     "permissions": [
       "activeTab",
