@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Hand Gesture Detector",
+  "version": "1.0",
+  "description": "Captures camera input and detects hand gestures.",
+  "permissions": ["tabs", "activeTab"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

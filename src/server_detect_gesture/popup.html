@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hand Gesture Detector</title>
+  <style>
+    video { display: none; } /* Hidden video element */
+    #gesture { font-size: 20px; }
+  </style>
+</head>
+<body>
+  <p id="gesture">Gesture: None</p>
+  
+  <!-- Hidden video element for capturing frames -->
+  <video id="video" autoplay></video>
+
+  <!-- Include the JavaScript for WebSocket and camera -->
+  <script src="popup.js"></script>
+</body>
+</html>
