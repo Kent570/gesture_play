@@ -51,13 +51,13 @@ function simulateClick() {
     if(event.key === 'h'){
         moveCursor(0, 10);
     }
-    if(event.key === 'f'){
+    if(event.key === 'g'){
         moveCursor(-10, 0);
     }
-    if(event.key === 'g'){
+    if(event.key === 'u'){
         moveCursor(10, 0);
     }  
-    if(event.key === 'u'){
+    if(event.key === 'c'){
         simulateClick();
     } 
     if(event.key === 'o'){
