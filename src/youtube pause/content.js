@@ -26,25 +26,25 @@ document.addEventListener('keydown', function(event) {
             }
         }
         if (event.key === 'n') {
-            let nextButton = document.querySelector('.ytp-next-button');
+            let nextButton = document.querySelector('.ytp-next-button, .button-nfnext');
             if (nextButton) {
                 nextButton.click(); // to next video
             }
         }
         if (event.key === 'v') {
-            let prevButton = document.querySelector('.ytp-prev-button');
+            let prevButton = document.querySelector('.ytp-prev-button, .button-nfprev');
             if (prevButton) {
                 prevButton.click(); // to previous video
             }
         }
         if (event.key === 'w') {
-            let subButton = document.querySelector('.ytp-subtitles-button');
+            let subButton = document.querySelector('.ytp-subtitles-button, .button-nfsubtitles');
             if (subButton) {
                 subButton.click(); // subtitles
             }
         }
         if(event.key === 'q'){
-            let muteButton = document.querySelector('.ytp-mute-button');
+            let muteButton = document.querySelector('.ytp-mute-button, .button-nfmute');
             if (muteButton) {
                 muteButton.click(); // mute
             }
