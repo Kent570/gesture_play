@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "YouTube Video Control1",
-    "version": "1.0.1",
+    "name": "YouTube Video Control_1",
+    "version": "1.0.2",
     "permissions": [
       "activeTab",
       "tabCapture",
