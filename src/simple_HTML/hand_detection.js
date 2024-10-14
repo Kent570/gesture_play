@@ -47,24 +47,30 @@ function onResults(results) {
 }
 
 // Function to detect if hand is open or closed
+// Function to detect if hand is fully open
 function detectHandOpen(landmarks) {
   const fingertips = [4, 8, 12, 16, 20]; // Thumb, Index, Middle, Ring, Pinky
-  const wristY = landmarks[0].y;
-  
+  const knuckles = [2, 6, 10, 14, 18];   // Corresponding knuckles of the fingers
   let openFingers = 0;
+
+  // Check if all fingers are extended (fingertip higher than knuckle in y-axis)
   for (let i = 1; i < fingertips.length; i++) {
-    if (landmarks[fingertips[i]].y < wristY) {
+    if (landmarks[fingertips[i]].y < landmarks[knuckles[i]].y) {
       openFingers++;
     }
   }
-  
-  // Check thumb separately (based on x-coordinate)
-  if (landmarks[fingertips[0]].x > landmarks[fingertips[0] - 1].x) {
+
+  // Check if thumb is extended (consider both x and y positions)
+  // Thumb tip should be farther to the right (x) and above (y) than its knuckle
+  if (landmarks[fingertips[0]].x > landmarks[knuckles[0]].x &&
+      landmarks[fingertips[0]].y < landmarks[knuckles[0]].y) {
     openFingers++;
   }
-  
-  return openFingers >= 4; // Consider hand open if at least 4 fingers are open
+
+  // Return true only if all five fingers are open
+  return openFingers === 5;
 }
+
 
 // Start detection
 const camera = new Camera(videoElement, {
