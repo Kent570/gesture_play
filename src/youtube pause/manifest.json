@@ -1,15 +1,35 @@
 {
     "manifest_version": 3,
+<<<<<<< HEAD
     "name": "YouTube Video Control",
     "version": "1.0.0",
     "permissions": [
       "activeTab"
+=======
+    "name": "YouTube Video Control_1",
+    "version": "1.0.2",
+    "permissions": [
+      "activeTab",
+      "tabCapture"
+>>>>>>> a34c4741ed740d135791e6793b2c83a3a55d0ec3
     ],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
+<<<<<<< HEAD
         "js": ["content.js"]
       }
     ]
+=======
+        "js": ["content.js","content2.js"]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "index.html"
+    }
+>>>>>>> a34c4741ed740d135791e6793b2c83a3a55d0ec3
   }
   
