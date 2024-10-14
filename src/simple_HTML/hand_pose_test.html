@@ -4,85 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hand Pose Detection Test</title>
+    <style>
+        #webcamVideo {
+            display: none;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        #hand-status {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hand Pose Detection Test</h1>
+    <video id="webcamVideo"></video>
+    <canvas id="output-canvas"></canvas>
+    <div id="hand-status">Hand status: Initializing...</div>
+
+    <!-- MediaPipe libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <h1>Hand Pose Detection Test</h1>
-    <video id="input-video" style="display: none;"></video>
-    <canvas id="output-canvas" style="max-width: 100%;"></canvas>
-    <div id="hand-status">Hand status: Initializing...</div>
 
-    <script>
-        const videoElement = document.getElementById('input-video');
-        const canvasElement = document.getElementById('output-canvas');
-        const canvasCtx = canvasElement.getContext('2d');
-        const handStatusElement = document.getElementById('hand-status');
-
-        function onResults(results) {
-            canvasCtx.save();
-            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-            canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
-            
-            if (results.multiHandLandmarks) {
-                for (const landmarks of results.multiHandLandmarks) {
-                    drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
-                                    {color: '#00FF00', lineWidth: 5});
-                    drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
-                    
-                    const isHandOpen = detectHandOpen(landmarks);
-                    handStatusElement.textContent = `Hand is ${isHandOpen ? 'open' : 'closed'}`;
-                }
-            } else {
-                handStatusElement.textContent = 'No hand detected';
-            }
-            
-            canvasCtx.restore();
-        }
-
-        function detectHandOpen(landmarks) {
-            const fingertips = [4, 8, 12, 16, 20]; // Thumb, Index, Middle, Ring, Pinky
-            const wristY = landmarks[0].y;
-            
-            let openFingers = 0;
-            for (let i = 1; i < fingertips.length; i++) {
-                if (landmarks[fingertips[i]].y < wristY) {
-                    openFingers++;
-                }
-            }
-            
-            // Check thumb separately (based on x-coordinate)
-            if (landmarks[fingertips[0]].x > landmarks[fingertips[0] - 1].x) {
-                openFingers++;
-            }
-            
-            return openFingers >= 4; // Consider hand open if at least 4 fingers are open
-        }
-
-        const hands = new Hands({locateFile: (file) => {
-            return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-        }});
-
-        hands.setOptions({
-            maxNumHands: 1,
-            modelComplexity: 1,
-            minDetectionConfidence: 0.5,
-            minTrackingConfidence: 0.5
-        });
-
-        hands.onResults(onResults);
-
-        const camera = new Camera(videoElement, {
-            onFrame: async () => {
-                await hands.send({image: videoElement});
-            },
-            width: 1280,
-            height: 720
-        });
-
-        camera.start();
-    </script>
+    <!-- Our hand gesture recognition script -->
+    <script src="hand_detection.js"></script>
 </body>
 </html>
