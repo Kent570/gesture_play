@@ -16,13 +16,13 @@ document.addEventListener('keydown', function(event) {
             video.currentTime -= 10; // time-10
         }
         if (event.key === 'n') {
-            let nextButton = document.querySelector('.ytp-next-button, .button-nfnext, .skip__button, .next-episode-button, .next-up-card');
+            let nextButton = document.querySelector('.ytp-next-button, .button-nfnext, .skip__button, .next-episode-button, .next-up-card, .player-controls__next');
             if (nextButton) {
                 nextButton.click(); // to next video
             }
         }
         if (event.key === 'v') {
-            let prevButton = document.querySelector('.ytp-prev-button, .button-nfprev, .prev-button, .previous-episode-button');
+            let prevButton = document.querySelector('.ytp-prev-button, .button-nfprev, .prev-button, .previous-episode-button, .player-controls__previous');
             if (prevButton) {
                 prevButton.click(); // to previous video
             }
