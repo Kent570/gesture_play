@@ -60,7 +60,7 @@ function simulateClick() { // simulate a click
     if(event.key === 'u'){ // move right
         moveCursor(10, 0);
     }  
-    if(event.key === 'c'){ // click
+    if(event.key === 'x'){ // click
         simulateClick();
     } 
     if(event.key === 'o'){ // cursor to center

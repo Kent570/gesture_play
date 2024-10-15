@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Video Control_2",
+  "version": "0.0.1",
+  "permissions": [
+    "activeTab",
+    "tabCapture"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["hand_detection.js", "speech.js", "hand_open.js"]
+    }
+  ]
+}
