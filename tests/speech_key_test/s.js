@@ -13,14 +13,19 @@ function turnOnCamera() {
 }
 
 function turnOffCamera() {  // Fixed function name
-    const videoElement = document.getElementById("videoOn");
-    const stream = videoElement.srcObject;
 
-    // Stop all tracks (video tracks in this case)
-    if (stream) {
+    alert("Camera turned off");
+    const videoElement = document.getElementById("videoOn");
+
+    if (videoElement.srcObject) {
+        const stream = videoElement.srcObject;
+
+        // Get all tracks from the stream and stop each of them
         const tracks = stream.getTracks();
         tracks.forEach(track => track.stop());
-        videoElement.srcObject = null;  // Clear the video element
+
+        // Clear the video element source
+        videoElement.srcObject = null;
     }
 }
 
@@ -28,7 +33,7 @@ if (SpeechRecognition) {
     const recognition = new SpeechRecognition();
 
     // Continuous recognition (false means it'll stop after each result)
-    recognition.continuous = true;
+    recognition.continuous = false;
 
     // Set the language (you can change this to other languages like 'es-ES' for Spanish)
     recognition.lang = 'en-US';
@@ -36,6 +41,7 @@ if (SpeechRecognition) {
     // When speech recognition ends
     recognition.onend = () => {
         if (recognition.isListening) {
+            alert("hi");
             recognition.start();  // Restart the recognition if it's not stopped manually
         }
         else {
@@ -48,9 +54,32 @@ if (SpeechRecognition) {
         const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
         if (transcript.includes("on the camera")) {
             turnOnCamera();  // Call function to turn the camera on
+            alert("on");
+    
+            // Stop recognition first, then restart it
+            recognition.stop();
+            setTimeout(() => {
+                recognition.start();
+            }, 1000);  // Small delay before restarting
         }
-        if (transcript.includes("off the camera")) {
+        else if (transcript.includes("off the camera")) {
             turnOffCamera();  // Call function to turn the camera off
+            alert("off");
+        
+                // Stop recognition first, then restart it
+                recognition.stop();
+                setTimeout(() => {
+                    recognition.start();
+                }, 1000);  // Small delay before restarting
+        }
+        else {
+            alert("I don't know what you said");
+    
+            // Stop recognition first, then restart it
+            recognition.stop();
+            setTimeout(() => {
+                recognition.start();
+            }, 1000);  // Small delay before restarting
         }
           // Stop recognition after command (remove this if you want continuous listening)
     };
@@ -61,19 +90,10 @@ if (SpeechRecognition) {
     };
 
     // Start recognition when key 'L' is pressed, stop when key 'S' is pressed
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'l' || event.key === 'L') {
-            recognition.isListening = true; 
-            recognition.start();
-        }
-        if (event.key === 's' || event.key === 'S') {
-            recognition.isListening = false;  // Stop listening flag
-            recognition.stop();  // Manually stop the recognition
-            statusElement.textContent = '';
-        }
-    });
+    recognition.start();
 
 } else {
     // If the browser doesn't support speech recognition
     alert('Your browser does not support speech recognition. Please use Chrome or Edge.');
 }
+
