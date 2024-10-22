@@ -27,27 +27,5 @@ document.addEventListener('keydown', function(event) {
                 prevButton.click(); // to previous video
             }
         }
-        if (event.key === 'l') { // fullscreen
-            if (!document.fullscreenElement) {
-                video.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
-        if (event.key === 'r') {
-            video.currentTime =0; // start from the beginning
-        }
-        if (event.key === 'w') {
-            let subButton = document.querySelector('.ytp-subtitles-button, .button-nfsubtitles');
-            if (subButton) {
-                subButton.click(); // subtitles
-            }
-        }
-        if(event.key === 'q'){
-            let muteButton = document.querySelector('.ytp-mute-button, .button-nfmute');
-            if (muteButton) {
-                muteButton.click(); // mute
-            }
-        }
     }
 });

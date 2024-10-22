@@ -36,25 +36,19 @@ function onResults(results) {
             const isThumbLeft = detectThumbsLeft(landmarks);
             const isIndexRight = detectindexRight(landmarks);
             const isIndexLeft = detectindexLeft(landmarks);
-            let video = document.querySelector('video');
 
             if (isHandOpen) {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-              handStatusElement.textContent = "Hand is open";
+              alert("open");
             } else if (isThumbRight) {
-              handStatusElement.textContent = "Thumb toward the right"
+              alert("Thumb toward the right")
             } else if (isThumbLeft) {
-              handStatusElement.textContent = "Thumb toward the left"
+              alert("Thumb toward the left")
             } else if (isIndexRight) {
-              handStatusElement.textContent = "Toward the Right"
+              alert("Toward the Right")
             } else if (isIndexLeft) {
-              handStatusElement.textContent = "Toward the Left"
+              alert("Toward the Left")
             } else {
-              handStatusElement.textContent = "Nothing detected"
+              alert("Nothing detected")
             }
 
         }
@@ -139,22 +133,19 @@ function detectindexLeft(landmarks) {
 
 
 // Start webcam
-navigator.mediaDevices.getUserMedia({video: true})
-    .then((stream) => {
-        videoElement.srcObject = stream;
-        videoElement.play();
-        // Start detection after video is playing
-        videoElement.onloadedmetadata = () => {
-            canvasElement.width = videoElement.videoWidth;
-            canvasElement.height = videoElement.videoHeight;
-            startDetection();
-        };
+document.addEventListener('DOMContentLoaded', function() {
+  const videoElement = document.getElementById('webcamVideo');
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+      videoElement.srcObject = stream;
     })
-    .catch((err) => {
-        console.error("Error accessing the webcam:", err);
-        handStatusElement.textContent = "Error: Could not access webcam";
+    .catch(function(error) {
+      console.error('Error accessing webcam:', error);
+      alert('Could not access the webcam. Please ensure you have granted permissions.');
     });
+});
 
+startDetection()
 // Start detection
 function startDetection() {
     const camera = new Camera(videoElement, {
