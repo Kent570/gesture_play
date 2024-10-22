@@ -1,21 +1,16 @@
-// Start Speech Recognition
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-recognition.continuous = true;  // Continuously listen
-recognition.interimResults = false;  // Only finalize results
-recognition.lang = 'en-US';  // Set language
+recognition.continuous = true; 
+recognition.interimResults = false;
+recognition.lang = 'en-US';
+let isGestureMode = true;  
+let cameraStream = null;
 
-// Element to display results or logs
-const resultElement = document.getElementById("result");  // Make sure this element exists in your page
-const startBtn = document.getElementById("startBtn");  // Button to start listening (if you have one)
-
-// Function to turn on the camera
 function turnOnCamera() {
-    console.log("Attempting to turn on the camera...");  // Debugging message
+    console.log("Attempting to turn on the camera...");
     navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
-        console.log("Camera turned on successfully.");  // Debugging message
-        const videoElement = document.getElementById("videoOn");
-        videoElement.srcObject = stream;
+        console.log("Camera is on, stream acquired!");
+        chrome.runtime.sendMessage({ action: 'openHiddenVideo', streamId: stream.id });
     })
     .catch(error => {
         console.error("Error accessing the camera: ", error);
@@ -23,54 +18,55 @@ function turnOnCamera() {
     });
 }
 
-// Function to turn off the camera
 function turnOffCamera() {
-    const videoElement = document.getElementById("videoOn");
-    const stream = videoElement.srcObject;
-
-    if (stream) {
-        const tracks = stream.getTracks();
+    if (cameraStream) {
+        const tracks = cameraStream.getTracks();
         tracks.forEach(track => track.stop());
-        videoElement.srcObject = null;  // Clear the video element
-        console.log("Camera turned off successfully.");  // Debugging message
+        cameraStream = null;
+        console.log("Camera turned off.");
+    } else {
+        console.log("Camera is already off.");
     }
 }
 
-// Start listening
-recognition.start();
+function virtualC() {
+    alert("Switched to virtualC mode");
+}
 
-// Event when speech recognition starts
-recognition.onstart = () => {
-    startBtn.textContent = 'Listening...';
-    resultElement.textContent = "Listening for commands...";
-};
+function gesture() {
+    alert("Switched to gesture mode");
+}
+
+recognition.start();
 
 recognition.onresult = function (event) {
     const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
     console.log('You said: ', transcript);
 
-    // Check for "on the camera"
     if (transcript.includes("on the camera")) {
-        // resultElement.textContent += " - Turning the camera on!";
-        alert(transcript);
-        turnOnCamera();  // Call function to turn the camera on
+        turnOnCamera();
     }
-
-    // Check for "off the camera"
     if (transcript.includes("off the camera")) {
-        // resultElement.textContent += " - Turning the camera OFF!";
-        turnOffCamera();  // Call function to turn the camera off
+        turnOffCamera();
     }
+    if (transcript.includes("change mode")) {
+        console.log("Change...");
+        if (isGestureMode) {
+            virtualC();
+            console.log("virtual...");
+            isGestureMode = false;  
+        } else {
+            gesture();
+            isGestureMode = true;  
+        }
+    }
+};
 
-    recognition.stop();  // Stop recognition after processing
+recognition.onend = function () {
+    console.log("Recognition ended, restarting...");
+    recognition.start(); 
 };
 
 recognition.onerror = function (event) {
     console.error('Speech recognition error detected: ', event.error);
-    alert("Error in speech recognition: " + event.error);
-};
-
-recognition.onend = function () {
-    alert("Speech recognition ended. Restarting...");
-    recognition.start();  // Restart recognition automatically
 };

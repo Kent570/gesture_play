@@ -6,12 +6,18 @@
     "background": {
         "service_worker": "background.js"
     },
-    "permissions": ["tabs", "activeTab"],
+    "permissions": ["tabs", "activeTab", "storage", "videoCapture"],
     "host_permissions": ["<all_urls>"],
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": ["contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["hidden.html"],
+            "matches": ["<all_urls>"]
         }
     ],
     "action": {
