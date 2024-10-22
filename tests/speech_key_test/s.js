@@ -1,5 +1,6 @@
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+let isGestureMode = true;  
 function turnOnCamera() {
     navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
@@ -11,6 +12,15 @@ function turnOnCamera() {
         console.error("Error accessing the camera: ", error);
     });
 }
+
+function virtualC() {
+    alert("Switched to virtualC mode");
+}
+
+function gesture() {
+    alert("Switched to gesture mode");
+}
+
 
 function turnOffCamera() {  // Fixed function name
 
@@ -45,6 +55,8 @@ if (SpeechRecognition) {
             recognition.start();  // Restart the recognition if it's not stopped manually
         }
         else {
+            isListening = true;
+            recognition.start();
             statusElement.textContent = '';  // Clear the recording status when stopped
         }
     };
@@ -60,7 +72,7 @@ if (SpeechRecognition) {
             recognition.stop();
             setTimeout(() => {
                 recognition.start();
-            }, 1000);  // Small delay before restarting
+            }, 2000);  // Small delay before restarting
         }
         else if (transcript.includes("off the camera")) {
             turnOffCamera();  // Call function to turn the camera off
@@ -70,7 +82,24 @@ if (SpeechRecognition) {
                 recognition.stop();
                 setTimeout(() => {
                     recognition.start();
-                }, 1000);  // Small delay before restarting
+                }, 2000);  // Small delay before restarting
+        }
+
+        else if (transcript.includes("change mode")) {
+            console.log("Change...");
+            if (isGestureMode) {
+                virtualC();
+                console.log("virtual...");
+                isGestureMode = false;  
+            } else {
+                gesture();
+                isGestureMode = true;  
+            }
+
+            recognition.stop();
+            setTimeout(() => {
+                recognition.start();
+            }, 2000);  // Small delay before restarting
         }
         else {
             alert("I don't know what you said");
@@ -79,7 +108,7 @@ if (SpeechRecognition) {
             recognition.stop();
             setTimeout(() => {
                 recognition.start();
-            }, 1000);  // Small delay before restarting
+            }, 2000);  // Small delay before restarting
         }
           // Stop recognition after command (remove this if you want continuous listening)
     };

@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "new_Voice Recorder Extension new",
+    "version": "1.0",
+    "description": "Records voice and turns on the camera on specific voice command.",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["tabs", "activeTab", "storage", "videoCapture"],
+    "host_permissions": ["<all_urls>"],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["contentScript.js","content.js","content2.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["hidden.html"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "action": {
+        "default_title": "Voice Recorder"
+    }
+}

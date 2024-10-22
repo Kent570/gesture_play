@@ -44,11 +44,9 @@ recognition.onresult = function (event) {
     console.log('You said: ', transcript);
 
     if (transcript.includes("on the camera")) {
-        alert("on");
         turnOnCamera();
     }
     if (transcript.includes("off the camera")) {
-        alert("off");
         turnOffCamera();
     }
     if (transcript.includes("change mode")) {
