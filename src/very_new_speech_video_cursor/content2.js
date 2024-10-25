@@ -49,6 +49,14 @@ function simulateClick() { // simulate a click
 }
 
 document.addEventListener('keydown', function(event) {
+  if (!isGestureMode) { // toggle cursor control
+    cursor.style.display = "block"; // show or hide cursor
+    console.log("Cursor control " + ((isGestureMode) ? "activated" : "deactivated") + ".");
+  }
+  else{
+    cursor.style.display = "none"; // show or hide cursor
+    console.log("Cursor control " + ((isGestureMode) ? "activated" : "deactivated") + ".");
+  }
 
   if (!isGestureMode) { // only allow cursor control when active
     if (event.key === 'y') { // move up
