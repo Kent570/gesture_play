@@ -1,0 +1,42 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webcam Viewer</title>
+  <style>
+    /* Your CSS styles */
+    #output-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #video-container {
+      position: relative;
+      width: 640px;
+      height: 480px;
+    }
+    #webcamVideo {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Webcam Feed</h2>
+  <div id="video-container">
+    <video id="webcamVideo" autoplay playsinline width="640" height="480"></video>
+    <canvas id="output-canvas" width="640" height="480"></canvas>
+  </div>
+  <!-- <div id="hand-status">Waiting for hand detection...</div> -->
+  <!-- <div id="gesture-description">Gesture: None</div> -->
+  <div id="gesture-description">Waiting for gesture...</div>
+
+
+  <!-- MediaPipe drawing utilities -->
+  <!-- <script src="mediapipe/drawing_utils.js"></script> -->
+
+  <!-- Your script -->
+  <script src="popup.js"></script>
+</body>
+</html>

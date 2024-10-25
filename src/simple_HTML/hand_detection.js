@@ -4,6 +4,7 @@ const videoElement = document.getElementById('webcamVideo');
 const canvasElement = document.getElementById('output-canvas');
 const canvasCtx = canvasElement.getContext('2d');
 const handStatusElement = document.getElementById('hand-status');
+// const handStatusElement = document.getElementById('hand-status');
 
 // Initialize MediaPipe Hands solution
 const hands = new Hands({locateFile: (file) => {
@@ -11,6 +12,10 @@ const hands = new Hands({locateFile: (file) => {
 }});
 
 hands.setOptions({
+    maxNumHands: 1,
+    modelComplexity: 1,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5,
     maxNumHands: 1,
     modelComplexity: 1,
     minDetectionConfidence: 0.5,
@@ -131,6 +136,23 @@ function detectindexLeft(landmarks) {
   return indexExtended && middleExtended;
 }
 
+
+// Start webcam
+navigator.mediaDevices.getUserMedia({video: true})
+    .then((stream) => {
+        videoElement.srcObject = stream;
+        videoElement.play();
+        // Start detection after video is playing
+        videoElement.onloadedmetadata = () => {
+            canvasElement.width = videoElement.videoWidth;
+            canvasElement.height = videoElement.videoHeight;
+            startDetection();
+        };
+    })
+    .catch((err) => {
+        console.error("Error accessing the webcam:", err);
+        handStatusElement.textContent = "Error: Could not access webcam";
+    });
 
 // Start webcam
 navigator.mediaDevices.getUserMedia({video: true})
