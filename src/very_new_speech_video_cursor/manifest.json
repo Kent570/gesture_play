@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "speech_new",
-    "version": "1.0.2",
+    "version": "0.5.1",
     "permissions": [
       "activeTab",
       "tabCapture"
