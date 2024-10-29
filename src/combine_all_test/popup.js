@@ -52,9 +52,41 @@ function sendImageToServer() {
   }
 }
 
+function turnOffCamera() {  // Fixed function name
+  if (videoElement.srcObject) {
+    // Get the video stream tracks and stop each one
+    videoElement.srcObject.getTracks().forEach((track) => {
+      track.stop();
+    });
+
+    // Clear the video element’s source and stop playing
+    videoElement.srcObject = null;
+    videoElement.pause();
+    videoElement.load();
+    console.log("Camera turned off.");
+  } else {
+    console.log("No camera to turn off.");
+  }
+}
+
 // Start the camera when the page loads
 // window.addEventListener('load', startCamera);
-startCamera();
+function turncamon(){
+  if(camera_on_bool == true){
+    startCamera();
+    camera_on_bool = false;
+  }
+}
+
+function turncamoff(){
+  if(camera_off_bool == true){
+    turnOffCamera();
+    camera_off_bool = false;
+  }
+}
+
+const intervalId4 = setInterval(turncamon, 100);
+const intervalId5 = setInterval(turncamoff, 100);
 
 // Establish a WebSocket connection to the server
 const ws = new WebSocket('ws://localhost:3000/ws');

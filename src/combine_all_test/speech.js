@@ -105,6 +105,18 @@ function showCursorWord() {
     }, 1000);
 }
 
+
+
+function virtualC() {
+    // alert("Switched to virtualC mode");
+    showCursorWord();
+}
+
+function gesture() {
+    // alert("Switched to gesture mode");
+    showVideoWord();
+}
+
 var camonoff = false;
 var isGestureMode = true;  
 
@@ -119,16 +131,6 @@ function turnOnCamera() {
     .catch(error => {
         console.error("Error accessing the camera: ", error);
     });
-}
-
-function virtualC() {
-    // alert("Switched to virtualC mode");
-    showCursorWord();
-}
-
-function gesture() {
-    // alert("Switched to gesture mode");
-    showVideoWord();
 }
 
 
@@ -152,6 +154,8 @@ function turnOffCamera() {  // Fixed function name
 }
 
 
+var camera_on_bool = false;
+var camera_off_bool = false;
 
 if (SpeechRecognition) {
     const recognition = new SpeechRecognition();
@@ -171,7 +175,7 @@ if (SpeechRecognition) {
         }
         else {
             if(camonoff){
-                turnOnCamera();
+                camera_on_bool = true;
             }
             isListening = true;
             recognition.start();
@@ -183,7 +187,7 @@ if (SpeechRecognition) {
     recognition.onresult = (event) => {
         const transcript = event.results[event.resultIndex][0].transcript.trim().toLowerCase();
         if (transcript.includes("on the camera")) {
-            turnOnCamera();  // Call function to turn the camera on
+            camera_on_bool = true;  // Call function to turn the camera on
             // alert("on");
             showcamon();
     
@@ -194,8 +198,9 @@ if (SpeechRecognition) {
             }, 2000);  // Small delay before restarting
         }
         else if (transcript.includes("off the camera")) {
-            turnOffCamera();  // Call function to turn the camera off
+            camera_off_bool = true;  // Call function to turn the camera off
             // alert("off");
+            showcamoff();
         
                 // Stop recognition first, then restart it
                 recognition.stop();
