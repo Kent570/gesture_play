@@ -3,12 +3,7 @@ let videoControlActive = true; // flag to track if video control is active
 document.addEventListener('keydown', function(event) {
     let video = document.querySelector('video');
 
-    if (event.key === 'q') { // toggle video control
-        videoControlActive = !videoControlActive;
-        console.log("Video control " + (videoControlActive ? "activated" : "deactivated") + ".");
-    }
-
-    if (videoControlActive && video) { // only allow video control when active
+    if (isGestureMode && video) { // only allow video control when active
         if (event.key === 'p') { // play/pause
             if (video.paused) {
                 video.play();
