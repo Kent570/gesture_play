@@ -48,7 +48,7 @@ function simulateClick() { // simulate a click
   }
 }
 
-document.addEventListener('keydown', function(event) {
+function disp(){
   if (!isGestureMode) { // toggle cursor control
     cursor.style.display = "block"; // show or hide cursor
     console.log("Cursor control " + ((isGestureMode) ? "activated" : "deactivated") + ".");
@@ -57,25 +57,32 @@ document.addEventListener('keydown', function(event) {
     cursor.style.display = "none"; // show or hide cursor
     console.log("Cursor control " + ((isGestureMode) ? "activated" : "deactivated") + ".");
   }
+}
 
+function cursorchange(){
   if (!isGestureMode) { // only allow cursor control when active
-    if (event.key === 'y') { // move up
+    if (gesture_var == 6) { // move up
       moveCursor(0, -10);
     }
-    if (event.key === 'h') { // move down
+    if (gesture_var == 7) { // move down
       moveCursor(0, 10);
     }
-    if (event.key === 'g') { // move left
+    if (gesture_var == 2) { // move left
       moveCursor(-10, 0);
     }
-    if (event.key === 'u') { // move right
+    if (gesture_var == 3) { // move right
       moveCursor(10, 0);
     }
-    if (event.key === 'x') { // click
+    if (gesture_var == 1) { // click
       simulateClick();
     }
-    if (event.key === 'o') { // reset cursor to center
+    if (gesture_var == 4) { // reset cursor to center
       resetCursor();
     }
   }
-});
+
+}
+
+
+const intervalId = setInterval(disp, 100);
+const intervalId2 = setInterval(cursorchange, 100);
