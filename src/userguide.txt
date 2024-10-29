@@ -1,6 +1,6 @@
 defult settings:
     camera: camera turn off
-    mode : video control mode at the beginning
+    mode : video control mode
     gesture : no hand detected
 
 speech:
