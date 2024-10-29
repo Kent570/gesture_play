@@ -84,9 +84,10 @@ def detect_index_up(landmarks):
 def detect_index_down(landmarks):
     index_down = landmarks[8].y > landmarks[7].y > landmarks[6].y > landmarks[5].y
     middle_folded = landmarks[9].y < landmarks[10].y
-    ring_folded = landmarks[13] .y < landmarks[14].y
+    ring_folded = landmarks[13].y < landmarks[14].y
+    index_exceed = landmarks[8].y > landmarks[0].y
 
-    return index_down and middle_folded and ring_folded
+    return index_down and middle_folded and ring_folded and index_exceed
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
