@@ -12,9 +12,6 @@
         "matches": ["<all_urls>"],
         "js": ["speech.js","content.js","content2.js","popup.js"]
       }
-    ],
-    "action": {
-      "default_popup": "popup.html"
-    }
+    ]
   }
   

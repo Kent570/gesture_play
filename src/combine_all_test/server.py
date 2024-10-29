@@ -99,21 +99,21 @@ async def websocket_endpoint(websocket: WebSocket):
             results = mp_hands.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
             # Determine the gesture
-            gesture = "no hand detected"
+            gesture = '0'
             if results.multi_hand_landmarks:
                 landmarks = results.multi_hand_landmarks[0].landmark
                 if (detect_hand_open(landmarks)):
-                    gesture = "open hand"
+                    gesture = '1'
                 elif (detect_thumbs_left(landmarks)):
-                    gesture = "thumb toward left"
+                    gesture = '2'
                 elif (detect_thumbs_right(landmarks)):
-                    gesture = "thumb toward right"
+                    gesture = '3'
                 elif (detect_index_left(landmarks)):
-                    gesture = "toward left"
+                    gesture = '4'
                 elif (detect_index_right(landmarks)):
-                    gesture = "toward right"
+                    gesture = '5'
                 else:
-                    gesture = "no gesture detected"
+                    gesture = '0'
                 # gesture = "open hand" if detect_hand_open(landmarks) else "closed fist"
 
             # Send the detected gesture back to the client
