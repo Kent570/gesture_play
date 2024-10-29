@@ -15,7 +15,6 @@ speech:
         if (mode == virtual cursor mode){
             mode -> video control mode
         }
-    
     Unrecognized word or sentence : Big question mark on the screen
 
 Gesture:
