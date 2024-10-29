@@ -59,28 +59,38 @@ function disp(){
   }
 }
 
+var cursor_num = 0;
+
 function cursorchange(){
   if (!isGestureMode) { // only allow cursor control when active
     if (gesture_var == 6) { // move up
       moveCursor(0, -10);
+      cursor_num = 6;
     }
     if (gesture_var == 7) { // move down
       moveCursor(0, 10);
+      cursor_num = 7;
     }
     if (gesture_var == 2) { // move left
       moveCursor(-10, 0);
+      cursor_num = 2;
     }
     if (gesture_var == 3) { // move right
       moveCursor(10, 0);
+      cursor_num = 3;
     }
-    if (gesture_var == 1) { // click
+    if (gesture_var == 1 && cursor_num != 1) { // click
       simulateClick();
+      cursor_num = 1;
     }
-    if (gesture_var == 4) { // reset cursor to center
+    if (gesture_var == 4 && cursor_num != 4) { // reset cursor to center
       resetCursor();
+      cursor_num = 4;
+    }
+    else if(gesture_var == 0||gesture_var == 5){
+      cursor_num = 0;
     }
   }
-
 }
 
 
