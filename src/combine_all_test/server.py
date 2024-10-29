@@ -93,6 +93,9 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     print("Client connected.")
 
+    previous_gesture = '0'
+    gesture_counter = 0
+
     try:
         while True:
             data = await websocket.receive_text()
@@ -131,8 +134,23 @@ async def websocket_endpoint(websocket: WebSocket):
                     gesture = '0'
                 # gesture = "open hand" if detect_hand_open(landmarks) else "closed fist"
 
+                if gesture == previous_gesture and gesture != '0':
+                    gesture_counter += 1
+                else:
+                    gesture_counter = 0
+
+                previous_gesture = gesture
+
+
+
             # Send the detected gesture back to the client
-            await websocket.send_text(gesture)
+                if gesture_counter >= 2:
+                    websocket.send_text(gesture)
+                    print(gesture)
+                else:
+                    websocket.send_text('0')
+                    print('0')
+            # await websocket.send_text(gesture)
             # print(gesture)
 
     except WebSocketDisconnect:

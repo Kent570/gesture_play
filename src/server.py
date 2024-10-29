@@ -94,7 +94,7 @@ def detect_index_down(landmarks):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     print("Client connected.")
-
+    
     try:
         while True:
             data = await websocket.receive_text()
