@@ -193,6 +193,12 @@ ws.onmessage = (event) => {
   else if(gestureData == 5){
     alert("5");
   }
+  else if(gestureData == 6){
+    alert("6");
+  }
+  else if(gestureData == 7){
+    alert("7");
+  }
   // alert(gestureData)
 };
 

@@ -140,16 +140,16 @@ async def websocket_endpoint(websocket: WebSocket):
                     gesture_counter = 0
 
                 previous_gesture = gesture
-
+                print(gesture)
 
 
             # Send the detected gesture back to the client
                 if gesture_counter >= 2:
-                    websocket.send_text(gesture)
-                    print(gesture)
+                    await websocket.send_text(gesture)
+                    # print(gesture)
                 else:
-                    websocket.send_text('0')
-                    print('0')
+                    await websocket.send_text('0')
+                    # print('0')
             # await websocket.send_text(gesture)
             # print(gesture)
 
