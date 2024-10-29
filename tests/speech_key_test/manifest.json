@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "speech",
+    "version": "1.0.2",
+    "permissions": [
+      "activeTab",
+      "tabCapture"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["s.js","content.js","content2.js"]
+      }
+    ]
+  }
+  

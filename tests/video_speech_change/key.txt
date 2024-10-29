@@ -1,0 +1,16 @@
+key: action
+p  : pause
+s  : time += 10
+b  : time +=1 0
+r  : time = 0
+// l  : fullscreen
+n  : next video
+v  : previous video
+// w  : subtitles
+// q  : mute
+y  : cursor up
+h  : cursor down
+g  : cursor left
+u  : cursor right
+c  : click
+o  : cursor reset
