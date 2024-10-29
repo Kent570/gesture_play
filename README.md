@@ -8,7 +8,7 @@ Steps to use the extension:
 1. Before uploading and run the extension, run server.py by Python to create a local server for gesture recognition.
 2. Go to chrome://extensions/ and turn on developer mode on the right top corner.
 3. Tap "Load unpacked" on the left top corner, and upload combine_all_test folder in src.
-4. On the top right corner, to the right of the URL bar, there is a puzzle piece, click it and our extension "combine will appear
+4. On the top right corner, to the right of the URL bar, there is a puzzle piece, click it and our extension "combine" will appear
 5. Click the three dots for our extension and tap "View Web Permission"
 6. Allow the camera permission and the microphone permission
 7. Click the three dots again, tap "This Can Read And Change Data Site" and choose "When You Click the Extension"
