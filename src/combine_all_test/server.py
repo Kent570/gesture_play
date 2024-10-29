@@ -118,6 +118,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
             # Send the detected gesture back to the client
             await websocket.send_text(gesture)
+            # print(gesture)
 
     except WebSocketDisconnect:
         print("Client disconnected.")
