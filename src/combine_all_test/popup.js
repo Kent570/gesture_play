@@ -125,7 +125,7 @@ function startCamera() {
       // Begin rendering the frames
       requestAnimationFrame(renderFrame);
 
-      setInterval(sendImageToServer, 100);
+      setInterval(sendImageToServer, 300);
     })
     .catch((err) => {
       console.error('Error accessing the webcam:', err);

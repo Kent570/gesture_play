@@ -55,8 +55,9 @@ def detect_thumbs_right(landmarks):
     middle_folded = landmarks[12].y > landmarks[11].y > landmarks[10].y
     ring_folded = landmarks[16].y > landmarks[15].y > landmarks[14].y
     pinky_folded = landmarks[20].y > landmarks[19].y > landmarks[18].y
+    thumb_less = landmarks[4].x < landmarks[18].x
 
-    return thumb_extended and index_folded and middle_folded and ring_folded and pinky_folded
+    return thumb_extended and index_folded and middle_folded and ring_folded and pinky_folded and thumb_less
 
 def detect_index_right(landmarks):
     # """Detect if the index and middle fingers are extended on the right hand."""
@@ -75,7 +76,17 @@ def detect_index_left(landmarks):
 
     return index_extended and middle_extended
 
+def detect_index_up(landmarks):
+    index_up  = landmarks[8].y < landmarks[7].y < landmarks[6].y < landmarks[5].y
 
+    return index_up
+
+def detect_index_down(landmarks):
+    index_down = landmarks[8].y > landmarks[7].y > landmarks[6].y > landmarks[5].y
+    middle_folded = landmarks[9].y < landmarks[10].y
+    ring_folded = landmarks[13] .y < landmarks[14].y
+
+    return index_down and middle_folded and ring_folded
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -112,6 +123,10 @@ async def websocket_endpoint(websocket: WebSocket):
                     gesture = '4'
                 elif (detect_index_right(landmarks)):
                     gesture = '5'
+                elif (detect_index_up(landmarks)):
+                    gesture = '6'
+                elif (detect_index_down(landmarks)):
+                    gesture = '7'
                 else:
                     gesture = '0'
                 # gesture = "open hand" if detect_hand_open(landmarks) else "closed fist"
