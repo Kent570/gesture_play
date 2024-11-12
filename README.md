@@ -1,3 +1,11 @@
+Gesture Play Chrome Extension
+**Project Overview**
+Gesture Play is a Chrome extension that allows users to control video playback and interact with a virtual cursor using hand gestures. This project developed based on gesture recognition and specch recognition to enable hands free control. It provides the alternative way to interact with web contents.
+
+**Why Gesture Play is Useful**
+Gesture Play offers contactless approach to browsing and video control, making it ideal for situations where traditional input methods are inconvenient or inaccessibel. This extentions is perfect for users who have limitation to use traditional input methods. 
+
+**Getting Started**
 This is a Chrome extension that can control video and simulate a virtual cursor by gestures.
 
 Everything that is needed are in src
@@ -15,3 +23,4 @@ Steps to use the extension:
 8. Go to the website you want to the extension for
 9. Tap the puzzle again, then tap our extension
 10. Start to Use!
+
