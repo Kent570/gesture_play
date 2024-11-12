@@ -25,3 +25,7 @@ Steps to use the extension:
 9. Tap the puzzle again, then tap our extension
 10. Start to Use!
 
+**Getting Help**
+If you encounter any issues or need additional help, feel free to open an issue on our GitHub repository (https://github.com/Kent570/gesture_play). We are here to help!
+
+**Maintainers and Contributors**
