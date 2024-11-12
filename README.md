@@ -1,4 +1,5 @@
 Gesture Play Chrome Extension
+
 **Project Overview**
 Gesture Play is a Chrome extension that allows users to control video playback and interact with a virtual cursor using hand gestures. This project developed based on gesture recognition and specch recognition to enable hands free control. It provides the alternative way to interact with web contents.
 
