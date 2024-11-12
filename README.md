@@ -29,3 +29,4 @@ Steps to use the extension:
 If you encounter any issues or need additional help, feel free to open an issue on our GitHub repository (https://github.com/Kent570/gesture_play). We are here to help!
 
 **Maintainers and Contributors**
+Gesture Play is actively maintained by a team of developers and contributors. Contributions are welcome! If you are interested in improving Gesture Play, pleas fork the repository and submit a pull request! 
