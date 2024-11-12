@@ -1,35 +1,31 @@
-Control Manual
+# Control Manual
 
-defult settings:
-    camera: camera turn off
-    mode : video control mode
-    gesture : no hand detected
+## Default Settings:
+- **Camera**: Off
+- **Mode**: Video Control Mode
+- **Gesture**: No hand detected
 
-speech:
-    "Turn on the camera" : Camera turns on
-    
-    "Turn off the camera" : Camera turns off
+## Speech Commands
+- **"Turn on the camera"**: Camera turns on.
+- **"Turn off the camera"**: Camera turns off.
+- **"Change mode"**: 
+    - If in *Video Control Mode*, switches to *Virtual Cursor Mode*.
+    - If in *Virtual Cursor Mode*, switches to *Video Control Mode*.
+- **Unrecognized word or sentence**: Displays a big question mark on the screen.
 
-    "Change mode" : 
-        if (mode == video control mode){
-            mode -> virtual cursor mode
-        }
-        if (mode == virtual cursor mode){
-            mode -> video control mode
-        }
-    Unrecognized word or sentence : Big question mark on the screen
+## Gesture Controls
 
-Gesture:
-    video control mode:
-        hand open : pause / play
-        thumb to right : forward 10 seconds
-        thumb to left : backward 10 seconds
-        finger to left : previous video
-        finger to right : next video
-    virtual cursor mode:
-        hand open : click
-        finger up : cursor up
-        finger down : cursor down
-        thumb right : cursor right
-        thumb left : cursor left
-        finger left : cursor return to center
+### Video Control Mode:
+- **Hand open**: Pause / Play
+- **Thumb to right**: Forward 10 seconds
+- **Thumb to left**: Backward 10 seconds
+- **Finger to left**: Previous video
+- **Finger to right**: Next video
+
+### Virtual Cursor Mode:
+- **Hand open**: Click
+- **Finger up**: Cursor moves up
+- **Finger down**: Cursor moves down
+- **Thumb right**: Cursor moves right
+- **Thumb left**: Cursor moves left
+- **Finger left**: Cursor returns to center
