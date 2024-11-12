@@ -1,3 +1,4 @@
+Control Manual
 
 defult settings:
     camera: camera turn off
