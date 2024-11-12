@@ -1,7 +1,9 @@
+
 defult settings:
     camera: camera turn off
     mode : video control mode
     gesture : no hand detected
+
 speech:
     "Turn on the camera" : Camera turns on
     
@@ -15,6 +17,7 @@ speech:
             mode -> video control mode
         }
     Unrecognized word or sentence : Big question mark on the screen
+
 Gesture:
     video control mode:
         hand open : pause / play
