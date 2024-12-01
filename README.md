@@ -14,7 +14,7 @@ Click the button below to download Python:
 
 ### Step 2: Open Google Chrome. In the top right corner of the browser, click the **Extensions** icon (a puzzle piece icon next to the URL bar).
 
-![Step 2](step2_1.png)
+![Step 2](images/step2_1.png)
 
 Click the **Manage extensions** button.
 
