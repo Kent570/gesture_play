@@ -18,29 +18,29 @@ Click the button below to download Python:
 
 Click the **Manage extensions** button.
 
-![Step 2](step2_2.png)
+![Step 2](images/step2_2.png)
 
 ### Step 3: Download the zipped extension folder, and upload the `combine_all_test` folder.
 
-![Step 3](step3.png)
+![Step 3](images/step3.png)
 
-![Step 3](step3_2.png)
+![Step 3](images/step3_2.png)
 
 ### Step 4: On the top right corner, to the right of the URL bar, there is a puzzle piece. Click it and our extension "combine" will appear.
 
-![Step 4](step4.png)
+![Step 4](images/step4.png)
 
 ### Step 5: Click the three dots for our extension and tap "View Web Permission."
 
-![Step 5](step5.png)
+![Step 5](images/step5.png)
 
 ### Step 6: Allow the camera permission and the microphone permission.
 
-![Step 6](step6.png)
+![Step 6](images/step6.png)
 
 ### Step 7: Click the three dots again, tap "This Can Read And Change Data Site" and choose "When You Click the Extension."
 
-![Step 7](step7.png)
+![Step 7](images/step7.png)
 
 ### Step 8: Go to the website you want the extension for.
 
