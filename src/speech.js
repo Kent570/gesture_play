@@ -5,8 +5,8 @@ function showQuestionMark() {
     let questionMark = document.createElement("div");
     // Set the styles for the question mark
     questionMark.textContent = "?";
-    questionMark.style.fontSize = "500px"; // Big question mark
-    questionMark.style.color = "red";
+    questionMark.style.fontSize = "400px"; // Big question mark
+    questionMark.style.color = "blue";
     questionMark.style.position = "absolute";
     questionMark.style.left = "50%"; // Center horizontally
     questionMark.style.top = "50%"; // Center vertically

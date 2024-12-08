@@ -72,11 +72,11 @@ function cursorchange(){
       cursor_num = 7;
     }
     if (gesture_var == 2) { // move left
-      moveCursor(-10, 0);
+      moveCursor(-20, 0);
       cursor_num = 2;
     }
     if (gesture_var == 3) { // move right
-      moveCursor(10, 0);
+      moveCursor(20, 0);
       cursor_num = 3;
     }
     if (gesture_var == 1 && cursor_num != 1) { // click
